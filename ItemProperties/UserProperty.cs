@@ -2,7 +2,7 @@
 
 namespace ItemProperties
 {
-    public class Class1
+    public class UserProperty
     {
 
         public int Id { get; set; }
