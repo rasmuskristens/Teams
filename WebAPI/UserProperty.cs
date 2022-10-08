@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace ItemProperties
+namespace WebAPI
 {
     [Table("user")]
     public partial class UserProperty

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ItemProperties;
+using WebAPI.Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,11 +9,21 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private IUser user;
+
+        public UserController(IUser user)
+        {
+            this.user = user;
+        }
+
+
+
         // GET: api/<UserController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<UserProperty> Get()
         {
-            return new string[] { "value1", "value2" };
+
+            return user.GetUsers();
         }
 
         // GET api/<UserController>/5
