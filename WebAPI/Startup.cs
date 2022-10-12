@@ -22,7 +22,7 @@ namespace WebAPI
             {
                 // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
                 Console.WriteLine("getting to the breakpoint");
-                options.UseSqlServer(Configuration.GetConnectionString("Server=tcp:systematic.database.windows.net,1433;Initial Catalog=TeamsDatabase;Persist Security Info=False;User ID=CloudSA8a746401;Password=Qyn76urj;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             // SQLite
