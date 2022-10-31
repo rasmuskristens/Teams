@@ -14,6 +14,7 @@ namespace WebAPI
         public int Id { get; set; }
         [StringLength(50)]
         [Unicode(false)]
+        [Required]
         public string? Email { get; set; }
         [StringLength(50)]
         [Unicode(false)]

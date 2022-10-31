@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT api/<UserController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public int Put([FromBody] UserProperty value)
         {
             return user.PutUser(value);

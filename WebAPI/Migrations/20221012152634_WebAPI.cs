@@ -14,7 +14,7 @@ namespace WebAPI.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    Email = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     FirstName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     LastName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     Roles = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),

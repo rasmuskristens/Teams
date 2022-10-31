@@ -6,7 +6,7 @@ using NuGet.Protocol;
 
 namespace WebAPI.Model
 {
-    public class User : ControllerBase,IUser
+    public class User : ControllerBase, IUser
     {
         private DatabaseContext ctx;
 
@@ -20,13 +20,14 @@ namespace WebAPI.Model
             try
             {
                 ctx.Users.Add(user);
+                ctx.SaveChanges();
                 return StatusCodes.Status200OK;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return StatusCodes.Status404NotFound;
             }
-            
+
         }
 
         public UserProperty GetUser(int id)
@@ -58,9 +59,10 @@ namespace WebAPI.Model
             {
                 var dUser = ctx.Users.Where((t) => t.Id == user).ToList().First();
                 var response = ctx.Users.Remove(dUser);
+                ctx.SaveChanges();
                 return StatusCodes.Status200OK;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return StatusCodes.Status404NotFound;
             }
@@ -69,9 +71,9 @@ namespace WebAPI.Model
 
         int IUser.PutUser(UserProperty user)
         {
-            var dUser = ctx.Users.Where(t=> t == user).ToList().First();
+            var dUser = ctx.Users.Where(t => t.Id == user.Id).ToList().First();
 
-            if(dUser != null)
+            if (dUser != null)
             {
                 dUser.Id = user.Id;
                 dUser.Email = user.Email;
@@ -79,6 +81,7 @@ namespace WebAPI.Model
                 dUser.LastName = user.LastName;
                 dUser.Roles = user.Roles;
                 dUser.IsCreated = user.IsCreated;
+                ctx.SaveChanges();
                 return StatusCodes.Status200OK;
             }
             return StatusCodes.Status404NotFound;
