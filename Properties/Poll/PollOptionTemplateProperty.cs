@@ -9,30 +9,18 @@ using System.Threading.Tasks;
 
 namespace Properties.Poll
 {
+    [Table("Poll_Option_Template")]
     public class PollOptionTemplateProperty
     {
-        [Table("Poll_Options_Template   ")]
-        public class VoteProperty
-        {
-            [Key]
-            [Column("id")]
-            public int Id { get; set; }
+        [Key]
+        [Column("id")]
+        public int Id { get; set; }
 
-            [Unicode(false)]
-            [Required]
-            public DateTime time { get; set; }
 
-            //[JsonPropertyName("TeamMembership")]
+        [Unicode(false)]
+        [Required]
+        public string? OptionText { get; set; }
 
-            [ForeignKey("PollOptionsProperty")]
-            [StringLength(50)]
-            [Required]
-            public PollOptionProperty? pollOptionsProperties { get; set; }
 
-            [ForeignKey("UserProperty")]
-            [StringLength(50)]
-            [Required]
-            public UserProperty? CreatedBy { get; set; }
-        }
     }
 }

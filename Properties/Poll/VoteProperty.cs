@@ -18,15 +18,15 @@ namespace Properties.Poll
 
         [Unicode(false)]
         [Required]
-        public DateTime time { get; set; }
+        public DateTime Time { get; set; }
 
-        //[JsonPropertyName("TeamMembership")]
-
+        //[JsonPropertyName("Poll_Option")]
         [ForeignKey("PollOptionsProperty")]
         [StringLength(50)]
         [Required]
-        public PollOptionProperty? pollOptionsProperties { get; set; }
+        public PollOptionProperty? PollOptionsProperties { get; set; }
 
+        //[JsonPropertyName("User")]
         [ForeignKey("UserProperty")]
         [StringLength(50)]
         [Required]

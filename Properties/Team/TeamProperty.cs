@@ -18,15 +18,7 @@ namespace Properties.Team
         [Unicode(false)]
         public string? Name { get; set; }
 
-        [StringLength(50)]
-        [Unicode(false)]
-        //[ForeignKey("DepartmentProperty")]
-        public string? DepartmentID { get; set; }
-
-        [StringLength(50)]
-        [Unicode(false)]
-        [ForeignKey("DepartmentProperty")]
-        public ICollection<TeamMembershipProperty>? TeamMembershipProperties { get; set; }
+        
 
     }
 }

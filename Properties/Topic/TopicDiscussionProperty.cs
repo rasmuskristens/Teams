@@ -23,10 +23,16 @@ namespace Properties.Topic
         [Required]
         public String TopicText { get; set; }
 
-        [ForeignKey("DiscussionProperty")]
+        //[JsonPropertyName("User")]
+        [ForeignKey("UserProperty")]
         [StringLength(50)]
         [Required]
         public UserProperty? CreatedBy { get; set; }
+
+        //[JsonPropertyName("Activity")]
+        [ForeignKey("ActivityProperty")]
+        [Required]
+        public UserProperty? ActivityId { get; set; }
 
 
     }

@@ -18,10 +18,6 @@ namespace Properties.Poll
         [Column("id")]
         public int Id { get; set; }
 
-        [Unicode(false)]
-        [Required]
-        public DateTime Time { get; set; }
-
         [StringLength(50)]
         [Required]
         public string OptionText { get; set; }
@@ -31,6 +27,10 @@ namespace Properties.Poll
         [StringLength(50)]
         [Required]
         public UserProperty? CreatedBy { get; set; }
+
+        [Unicode(false)]
+        [Required]
+        public DateTime Time { get; set; }
 
         [ForeignKey("PollOptionsProperty")]
         [StringLength(50)]

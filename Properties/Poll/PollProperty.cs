@@ -6,9 +6,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Properties.Activity;
 
 namespace Properties.Poll
 {
+    [Table("Poll")]
     public class PollProperty
     {
         [Key]
@@ -17,22 +19,22 @@ namespace Properties.Poll
 
         [Unicode(false)]
         [Required]
-        public String Question { get; set; }
+        public string Question { get; set; }
 
-        //[JsonPropertyName("TeamMembership")]
-
-
+        //[JsonPropertyName("User")]
         [ForeignKey("UserProperty")]
         [StringLength(50)]
         [Required]
         public UserProperty? CreatedBy { get; set; }
 
+        [Required]
         public bool IsExtendable { get; set; }
 
-        [ForeignKey("PollOptionsProperty")]
+        //[JsonPropertyName("Event")]
+        [ForeignKey("EventProperty")]
         [StringLength(50)]
         [Required]
-        public ICollection<PollOptionProperty>? PollOptionsProperties { get; set; }
+        public EventProperty? PollOptionsProperties { get; set; }
 
 
 

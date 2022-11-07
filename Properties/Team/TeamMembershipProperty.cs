@@ -14,23 +14,26 @@ namespace Properties.Team
     public partial class TeamMembershipProperty
 
     {
-        //[Key,Column(Order = 0)]
+        //[JsonPropertyName("User")]
+        [Key,Column(Order = 0)]
         [ForeignKey("UserProperty")]
         public int UserId { get; set; }
         [StringLength(50)]
         [Unicode(false)]
 
-        //[Key, Column(Order = 1)]
+        //[JsonPropertyName("Team")]
+        [Key, Column(Order = 1)]
         [ForeignKey("TeamProperty")]
         public int TeamId { get; set; }
         [StringLength(50)]
         [Unicode(false)]
 
+        //[JsonPropertyName("Role")]
         [ForeignKey("RoleProperty")]
         public int RoleId { get; set; }
         [StringLength(50)]
         [Unicode(false)]
-
+        [Required]
         public bool isActive { get; set; }
     }
 

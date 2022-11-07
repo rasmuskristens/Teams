@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Properties.Activity
 {
+    [Table("Event")]
     public class EventProperty
     {
         [Key]
@@ -24,8 +25,8 @@ namespace Properties.Activity
         [Required]
         public String Type { get; set; }
 
-        //[JsonPropertyName("User")]
-        [ForeignKey("EventProperty")]
+        //[JsonPropertyName("Activity")]
+        [ForeignKey("ActivityProperty")]
         [StringLength(50)]
         [Required]
         public ActivityProperty? ParentActivityId { get; set; }

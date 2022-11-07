@@ -10,6 +10,7 @@ using Properties.Team;
 
 namespace Properties.Activity
 {
+    [Table("Activity")]
     public class ActivityProperty
     {
         [Key]
@@ -19,7 +20,7 @@ namespace Properties.Activity
 
         [Unicode(false)]
         [Required]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         [Unicode(false)]
         

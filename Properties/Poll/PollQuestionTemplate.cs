@@ -9,19 +9,18 @@ using System.Threading.Tasks;
 
 namespace Properties.Poll
 {
+    [Table("Poll_Question_Template")]
     public class PollQuestionTemplate
     {
-        [Table("Poll_Question_template")]
-
+        
         [Key]
         [Column("id")]
         public int Id { get; set; }
 
         [Unicode(false)]
         [Required]
-        public String Question { get; set; }
+        public string Question { get; set; }
 
-        //[JsonPropertyName("TeamMembership")]
 
         [Unicode(false)]
         [Required]

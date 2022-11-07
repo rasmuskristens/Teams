@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Properties.Topic
 {
+    [Table("Topic_Discussion_Template")]
     public class TopicDiscussionTemplateProperty
     {
         [Key]

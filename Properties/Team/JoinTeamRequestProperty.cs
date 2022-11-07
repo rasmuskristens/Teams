@@ -9,30 +9,34 @@ using System.Threading.Tasks;
 
 namespace Properties.Team
 {
-    [Table("JoinTeamRequest")]
+    [Table("Join_Team_Request")]
     public class JoinTeamRequestProperty
     {
 
         [Key]
         [Column("Id")]
         public int Id { get; set; }
+
         [Unicode(false)]
         public DateTime DateRequested { get; set; }
 
+        //[JsonPropertyName("Team_Membership")]
         [ForeignKey("TeamMembershipProperty")]
         public int TeamMembershipId { get; set; }
+
         [StringLength(50)]
         [Unicode(false)]
-
+        [Required]
         public bool Reviewed { get; set; }
+
         [StringLength(50)]
         [Unicode(false)]
-
+        [Required]
         public bool Approved { get; set; }
 
+        //[JsonPropertyName("User")]
         [StringLength(50)]
         [Unicode(false)]
-
         [ForeignKey("UserProperty")]
         public UserProperty ReviewedBy { get; set; }
 

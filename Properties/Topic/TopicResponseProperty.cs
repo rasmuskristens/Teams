@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace Properties.Topic
 {
@@ -28,16 +29,15 @@ namespace Properties.Topic
             [Required]
             public DateTime Created { get; set; }
 
-            //[JsonPropertyName("TeamMembership")]
-
+            //[JsonPropertyName("User")]
             [ForeignKey("UserProperty")]
             [StringLength(50)]
             [Required]
             public UserProperty? CreatedBy { get; set; }
 
+            //[JsonPropertyName("Topic_Discussion")]
             [ForeignKey("TopicDiscussionProperty")]
             [StringLength(50)]
-            [Required]
             public TopicDiscussionProperty? DicussionId { get; set; }
 
 
