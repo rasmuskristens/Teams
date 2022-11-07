@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using WebAPI.Model;
+using Properties;
+using Microsoft.Graph.ExternalConnectors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,9 +41,9 @@ namespace WebAPI.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public int Post([FromBody] UserProperty value)
+        public async Task<int> Post([FromBody] UserProperty value)
         {
-            return user.PostUser(value);
+            return await user.PostUser(value);
         }
 
         // PUT api/<UserController>/5

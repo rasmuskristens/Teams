@@ -14,10 +14,10 @@ public class Program
             var services = scope.ServiceProvider;
             try
             {
-                //var context = services.GetRequiredService<DatabaseContext>();
+                var context = services.GetRequiredService<DatabaseContext>();
 
-                //  context.Database.EnsureCreated();
-                //context.Database.Migrate();
+                context.Database.EnsureCreated();
+                context.Database.Migrate();
             }
             catch (Exception ex)
             {

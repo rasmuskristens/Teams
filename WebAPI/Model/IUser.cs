@@ -1,4 +1,6 @@
 ﻿
+using Properties;
+
 namespace WebAPI.Model
 {
     public interface IUser
@@ -6,7 +8,7 @@ namespace WebAPI.Model
         UserProperty GetUser(int id);
         List<UserProperty> GetUsers();
         int PutUser(UserProperty user);
-        int PostUser(UserProperty user);
+        Task<int> PostUser(UserProperty user);
         int DeleteUser(int id);
 
     }

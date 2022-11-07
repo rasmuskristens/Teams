@@ -12,8 +12,8 @@ using WebAPI.Model;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221012152634_WebAPI")]
-    partial class WebAPI
+    [Migration("20221101133332_e")]
+    partial class e
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,26 @@ namespace WebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("WebAPI.UserProperty", b =>
+            modelBuilder.Entity("Properties.RoleProperty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Role");
+                });
+
+            modelBuilder.Entity("Properties.UserProperty", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,6 +53,7 @@ namespace WebAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
@@ -43,24 +63,28 @@ namespace WebAPI.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<bool?>("IsCreated")
-                        .HasColumnType("bit")
-                        .HasColumnName("isCreated");
-
                     b.Property<string>("LastName")
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("Roles")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                    b.Property<int?>("RoleProperty")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-                    b.HasKey("Email");
 
-                    b.ToTable("user");
+                    b.HasIndex("RoleProperty");
+
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Properties.UserProperty", b =>
+                {
+                    b.HasOne("Properties.RoleProperty", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleProperty");
+
+                    b.Navigation("Role");
                 });
 #pragma warning restore 612, 618
         }
