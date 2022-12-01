@@ -1,0 +1,1 @@
+join team request triggers a team membership class that is assigned false in active

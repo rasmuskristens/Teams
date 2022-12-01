@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.Graph;
 using Newtonsoft.Json;
 using NuGet.Protocol;
 using Properties;
@@ -21,37 +20,41 @@ namespace WebAPI.Model
         public async Task<int> PostUser(UserProperty user)
         {
 
-            //try
-            //{
-            //    var res = ctx.Users.Add(user);
-            //   EntityEntry<RoleProperty> newlyAdded = ctx.Roles.Add(user.Role);
-            //    //response.Content = res.CurrentValues;
-            //    //response.Content = new StringContent(JsonSerializer);
-            //    await ctx.SaveChangesAsync();
-            //    return  2;
-            //}
-            //catch (Exception e)
-            //{
-            //    return 2;
-            //}
+            try
+            {
+                var res = ctx.Users.Add(user);
+                //response.Content = res.CurrentValues;
+                //response.Content = new StringContent(JsonSerializer);
+                await ctx.SaveChangesAsync();
+                return 2;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
             return 0;
 
         }
 
-        public UserProperty GetUser(int id)
+        public async Task<List<string>> GetUser(List<string> channelIds)
         {
-            //try
-            //{
-            //    var status = ctx.Users.Where(t => t.Id == id).ToList();
-            //    if (status.Any())
-            //    {
-            //        return status.First();
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    return null;
-            //}
+            try
+            {
+                var status = ctx.Teams.Where(t => channelIds.Contains(t.MSTeamsChannelId)).ToList();
+                 List<string> list= new List<string>();
+                if (status.Any())
+                {
+                    foreach( SocioliteTeamProperty team in status)
+                    {
+                        list.Add(team.MSTeamsChannelId);
+                    }
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
             return null;
         }
 
@@ -66,11 +69,6 @@ namespace WebAPI.Model
             //try
             //{
             //    var dUser = ctx.Users.Where((t) => t.Id == user).ToList().First();
-            //    var Role = ctx.Roles.Where((t) => t.Id == dUser.Role.Id).ToList().First();
-            //    if (Role != null)
-            //    {
-            //        ctx.Roles.Remove(Role);
-            //    }
             //    ctx.Users.Remove(dUser);
             //    ctx.SaveChanges();
             //    return StatusCodes.Status200OK;
@@ -85,32 +83,16 @@ namespace WebAPI.Model
         //here is where you post the role that a person has and add in in the role dB
         int IUser.PutUser(UserProperty user)
         {
-            var dUser = ctx.Users.Where(t => t.Id == user.Id).ToList().First();
+            var dUser = ctx.Users.Where(t => t.MSTeamsId == user.MSTeamsId).ToList().First();
 
-            //if (dUser != null)
-            //{
-            //    dUser.Id = user.Id;
-            //    dUser.Email = user.Email;
-            //    dUser.FirstName = user.FirstName;
-            //    dUser.LastName = user.LastName;
+            if (dUser != null)
+            {
+                dUser.FirstName = user.FirstName;
+                
 
-            //    var role = ctx.Roles.Where(t => t.Id == dUser.Role.Id).ToList().First();
-            //    if (role != null)
-            //    {
-            //        dUser.Role = role;
-            //        role.Name = dUser.Role.Name;
-            //        ctx.SaveChanges();
-            //    }
-            //    else
-            //    {
-            //        EntityEntry<RoleProperty> newlyAdded = ctx.Roles.Add(dUser.Role);
-            //        ctx.SaveChanges();
-            //    }
-
-
-            //    ctx.SaveChanges();
-            //    return StatusCodes.Status200OK;
-            //}
+                ctx.SaveChanges();
+                return StatusCodes.Status200OK;
+            }
             return StatusCodes.Status404NotFound;
 
         }

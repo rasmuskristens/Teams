@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using WebAPI.Model;
 using Properties;
-using Microsoft.Graph.ExternalConnectors;
+using WebAPI.Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,19 +18,19 @@ namespace WebAPI.Controllers
             this.user = user;
         }
         // GET: api/<UserController>
-        [HttpGet]
-        public List<UserProperty> Get()
-        {
+        //[HttpGet]
+        //public List<UserProperty> Get()
+        //{
 
-            return user.GetUsers();
-        }
+        //    return user.GetUsers();
+        //}
 
         // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public UserProperty Get(int id)
+        [HttpGet]
+        public async Task<List<string>> Get([FromBody] List<string> channelIds)
         {
-            var userId = user.GetUser(id);
-            if (userId!= null)
+            var userId = await user.GetUser(channelIds);
+            if (userId != null)
             {
                 return userId;
             }
@@ -50,6 +49,7 @@ namespace WebAPI.Controllers
         [HttpPut]
         public int Put([FromBody] UserProperty value)
         {
+
             return user.PutUser(value);
         }
 

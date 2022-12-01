@@ -11,31 +11,19 @@ using System.Text.Json.Serialization;
 
 namespace Properties
 {
-    [Table("User")]
+    [Table("Sociolite_User")]
     public partial class UserProperty
     {
 
         [Key]
         [Column("id")]
-        public int Id { get; set; }
+        public int MSTeamsId { get; set; }
 
         [StringLength(50)]
         [Unicode(false)]
         [Required]
-        public string Email { get; set; }
-
-        //[JsonPropertyName("TeamMembership")]
+        public string FirstName { get; set; }
         
-        [StringLength(50)]
-        [Required]
-        public bool isAdministrator { get; set; }
-
-        [StringLength(50)]
-        [Unicode(false)]
-        public string? FirstName { get; set; }
-        [StringLength(50)]
-        [Unicode(false)]
-        public string? LastName { get; set; }
 
 
 

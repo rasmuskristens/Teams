@@ -1,0 +1,17 @@
+domain SFTP user and password
+
+
+Host: ftp.guardiantailor.eu
+
+Brugernavn (User): guardiantailor.eu
+
+Port: 21
+
+password: Y625kjeaqqyn76urj8261!
+
+
+filezilla:
+
+listening port: 14140
+
+password: Y625kjeaqqyn76urj8261!

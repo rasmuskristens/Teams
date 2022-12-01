@@ -1,0 +1,24 @@
+{
+    "solution": {
+        "teamsAppTenantId": "73d76180-d602-417d-a90b-7a93261f87b5"
+    },
+    "fx-resource-frontend-hosting": {
+        "indexPath": "",
+        "endpoint": "https://localhost:44302",
+        "domain": "localhost"
+    },
+    "fx-resource-aad-app-for-teams": {
+        "clientId": "9597429d-d955-46f0-94f9-3add7e85f402",
+        "clientSecret": "{{fx-resource-aad-app-for-teams.clientSecret}}",
+        "objectId": "8c96a880-d358-4c04-b8c3-3667c906cb2e",
+        "oauth2PermissionScopeId": "3c4b8ae4-957b-4929-8652-80af19a28471",
+        "tenantId": "73d76180-d602-417d-a90b-7a93261f87b5",
+        "oauthHost": "https://login.microsoftonline.com",
+        "oauthAuthority": "https://login.microsoftonline.com/73d76180-d602-417d-a90b-7a93261f87b5",
+        "applicationIdUris": "api://localhost/9597429d-d955-46f0-94f9-3add7e85f402"
+    },
+    "fx-resource-appstudio": {
+        "teamsAppUpdatedAt": 1667214288896,
+        "teamsAppId": "52de3a05-7c07-4503-93e3-6723f3d86fe0"
+    }
+}

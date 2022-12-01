@@ -1,5 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebAPI.Model;
+using WebAPI.Model.DisccusionFolder;
+using WebAPI.Model.MembershipFolder;
+using WebAPI.Model.PollFolder;
+using WebAPI.Model.TeamFolder;
 //using WebAPI.DataAccess;
 
 namespace WebAPI
@@ -18,6 +22,10 @@ namespace WebAPI
         {
             services.AddControllers();
             services.AddScoped<IUser, User>();
+            services.AddScoped<ITeamContext, TeamContext>();
+            services.AddScoped<IDiscussionContext, DisccusionsContext>();
+            services.AddScoped<IPollContext,PollContext>();
+            services.AddScoped<IMembershipContext, MembershipContext>();
             services.AddDbContext<DatabaseContext>(options =>
             {
                 // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -49,5 +57,7 @@ namespace WebAPI
                 endpoints.MapControllers();
             });
         }
+
+
     }
 }

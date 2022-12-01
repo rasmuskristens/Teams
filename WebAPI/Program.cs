@@ -16,8 +16,10 @@ public class Program
             {
                 var context = services.GetRequiredService<DatabaseContext>();
 
-                context.Database.EnsureCreated();
-                context.Database.Migrate();
+                //context.Database.EnsureCreated();
+                //context.Database.Migrate();
+
+
             }
             catch (Exception ex)
             {

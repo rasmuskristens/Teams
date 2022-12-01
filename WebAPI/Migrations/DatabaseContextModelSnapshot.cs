@@ -22,118 +22,28 @@ namespace WebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Properties.JoinTeamRequestProperty", b =>
+            modelBuilder.Entity("Properties.ActivityOccurenceProperty", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("Approved")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("DateRequested")
-                        .IsUnicode(false)
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Reviewed")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("ReviewedDate")
-                        .IsUnicode(false)
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TeamMembershipId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserProperty")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserProperty");
-
-                    b.ToTable("JoinTeamRequest");
-                });
-
-            modelBuilder.Entity("Properties.RoleProperty", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Role");
-                });
-
-            modelBuilder.Entity("Properties.TeamMembershipProperty", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TeamId")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    b.Property<DateTime>("ActivityOccuranceId")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(1);
+
+                    b.Property<int>("DiscussionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DepartmentProperty")
+                    b.Property<int>("PollId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoleId")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("int");
+                    b.HasKey("TeamId", "ActivityOccuranceId");
 
-                    b.Property<bool>("isActive")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("bit");
-
-                    b.HasKey("UserId", "TeamId");
-
-                    b.HasIndex("DepartmentProperty");
-
-                    b.ToTable("Team_Membership");
+                    b.ToTable("Activity_Occurrence");
                 });
 
-            modelBuilder.Entity("Properties.TeamProperty", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("DepartmentID")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Team");
-                });
-
-            modelBuilder.Entity("Properties.UserProperty", b =>
+            modelBuilder.Entity("Properties.CustomDiscussionProperty", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,52 +52,148 @@ namespace WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Email")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TopicText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Custom_Discussion");
+                });
+
+            modelBuilder.Entity("Properties.CustomPollProperty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PollOptions")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Custom_Poll");
+                });
+
+            modelBuilder.Entity("Properties.PollVoteProperty", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    b.Property<int>("ActivityOccuranceId")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    b.Property<int>("VoteOptionNumber")
+                        .IsUnicode(false)
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "ActivityOccuranceId");
+
+                    b.ToTable("Poll_Vote");
+                });
+
+            modelBuilder.Entity("Properties.SocioliteTeamProperty", b =>
+                {
+                    b.Property<int>("TeamId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"), 1L, 1);
+
+                    b.Property<string>("MSTeamsChannelId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MSTeamsTeamId")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Recurring")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("TeamId");
+
+                    b.ToTable("Sociolite_Team");
+                });
+
+            modelBuilder.Entity("Properties.Team.SocioliteTeamMembershipProperty", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    b.Property<int>("TeamId")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    b.Property<string>("TeamSpecificRole")
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
+                    b.HasKey("UserId", "TeamId");
+
+                    b.ToTable("Sociolite_Team_Membership");
+                });
+
+            modelBuilder.Entity("Properties.UserProperty", b =>
+                {
+                    b.Property<int>("MSTeamsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MSTeamsId"), 1L, 1);
+
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("LastName")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                    b.HasKey("MSTeamsId");
 
-                    b.Property<bool>("isAdministrator")
-                        .HasMaxLength(50)
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User");
-                });
-
-            modelBuilder.Entity("Properties.JoinTeamRequestProperty", b =>
-                {
-                    b.HasOne("Properties.UserProperty", "ReviewedBy")
-                        .WithMany()
-                        .HasForeignKey("UserProperty")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ReviewedBy");
-                });
-
-            modelBuilder.Entity("Properties.TeamMembershipProperty", b =>
-                {
-                    b.HasOne("Properties.TeamProperty", null)
-                        .WithMany("TeamMembershipProperties")
-                        .HasForeignKey("DepartmentProperty");
-                });
-
-            modelBuilder.Entity("Properties.TeamProperty", b =>
-                {
-                    b.Navigation("TeamMembershipProperties");
+                    b.ToTable("Sociolite_User");
                 });
 #pragma warning restore 612, 618
         }

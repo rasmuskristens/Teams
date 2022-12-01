@@ -1,0 +1,45 @@
+Welcome to the Teams Toolkit! Here are some tips to get started building your app.
+
+
+Quick start
+----------
+
+Before you run or Start Debugging for the first time, follow these steps:
+
+1. If the project only contains Personal Tab capability, select Debug > Start Debugging or press F5.
+2. If the project contains Bot capability, before debugging, select the Project > TeamsFx > Start ngrok for Bot menu. When prompted, sign in the account you selected when you created the project.
+3. After press F5, in the browser, click Add to add your app to Teams.
+
+Learn more about developing Teams applications with Blazor at https://aka.ms/blazor-teams-app-dev.
+
+
+Building your app UI
+--------------------
+
+Fluent UI is a front-end framework designed to build experiences that fit seamlessly into a broad range of Microsoft products. To make it simpler for you to build applications that fit seamlessly into Microsoft Teams, this template showcases Fluent UI Blazor components that are part of the Microsoft.Fast.Components.FluentUI package. 
+
+Learn more about these components here: https://github.com/microsoft/fast-blazor
+
+
+Building your own bot
+--------------------
+
+The Bot Framework, along with the Azure Bot Service, provides tools to build, test, deploy, and manage intelligent bots, all in one place. The Bot Framework includes a modular and extensible SDK for building bots. With this framework, developers can create bots that use speech, understand natural language, handle questions and answers, and more.
+
+Learn more about Bot Framework here: https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-basics-teams?view=azure-bot-service-4.0&tabs=csharp
+
+
+Report an issue
+---------------
+
+If you meet any problem when you are using out Toolkit or building your own Teams app. You can create an issue in our GitHub repository: https://github.com/OfficeDev/TeamsFx
+
+
+Q&A
+---------------
+
+1. How to request more permissions and scopes in Graph call?
+   If you have selected Personal Tab capability and you want to change the scope in Graph call, you can first change the parameter _scope in Components/Graph.razor. Then go to Azure Portal -> Azure Active Directory -> App Registrations, find the AAD application Toolkit created for you (default name is the same as the project name), under Manage, select API Permissions. Select Add a permission > Microsoft Graph > Delegated permissions, then add the permissions you want.
+
+2. Why does the bot not work when I start ngrok by myself?
+   The command Project > TeamsFx > Start ngrok for Bot not only start ngrok but also update the endpoint in Dev portal. So if you start ngrok manually, please trigger this command before press F5, it won't start ngrok, it will using the existing endpoint to update.
